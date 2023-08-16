@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NoteWave</string>
+    <string name="add_note">Add Note</string>
+    <string name="enter_title">Enter title</string>
+    <string name="enter_body">Enter body</string>
+    <string name="save">Save</string>
+    <string name="app_title">NoteWave</string>
+    <string name="back">Back</string>
+</resources>
