@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -14,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.notewave.activities.AddNoteActivity;
 import com.example.notewave.activities.NoteDetailActivity;
+import com.example.notewave.adapters.NotesAdapter;
+import com.example.notewave.models.Note;
 import com.example.notewave.utils.DatabaseHelper;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private ListView noteListView;
     private DatabaseHelper databaseHelper;
+    private NotesAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +76,13 @@ public class MainActivity extends AppCompatActivity {
         }
         cursor.close();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, noteTitles);
+        ArrayList<Note> notes = databaseHelper.getAllNotes();
+        adapter = new NotesAdapter(this, R.layout.list_item_note, notes); // Replace with your adapter class
+
         noteListView.setAdapter(adapter);
+
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, noteTitles);
+//        noteListView.setAdapter(adapter);
         db.close();
     }
 }
